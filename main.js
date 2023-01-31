@@ -1,23 +1,43 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
-
 document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
+  <div id="game-container">
+    <h1>Blackjack</h1>
+    <p id="message-el">Want to play a round?</p>
+    <p>Cards:</p>
+    <p id="sum-el">Sum:</p>
+    <button id="start">START GAME</button>
   </div>
 `
+let firstCard = setRandomNum();
+let secondCard = setRandomNum();
+let sum = firstCard + secondCard;
+let message = ''
+let hasBlackJack = false;
+let isAlive = true;
+let messageEl = document.getElementById('message-el');
+let sumEl = document.getElementById('sum-el');
 
-setupCounter(document.querySelector('#counter'))
+function setRandomNum(){
+  return Math.floor(Math.random() * 10) + 2;
+}
+
+function startGame(){
+  console.log('clicked start game')
+  if (sum <= 20) {
+      message = "Do you want to draw a new card?"
+  } else if (sum === 21) {
+      message = "You've got Blackjack!"
+      hasBlackJack = true
+  } else {
+      message = "You're out of the game!"
+      isAlive = false
+  }
+  messageEl.textContent = message; 
+  sumEl.textContent = "Sum: " + sum;
+}
+
+
+
+document.getElementById('start').addEventListener('click', startGame);
+// console.log(`${firstCard}, ${secondCard}`)
+// console.log(hasBlackJack)
