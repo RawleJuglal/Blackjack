@@ -7,7 +7,20 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div id="game-container">
+        <h1>Blackjack</h1>
+        <p id="message-el">Want to play a round?</p>
+        <div id="opacity-background">
+          <p id="cards-el">Cards:</p>
+          <div id="cards-container"></div>
+          <p id="sum-el">Sum:</p>
+          <p id="player-el"></p>
+        </div>
+        <button id="start">START GAME</button>
+        <button id="newCard">New Card</button>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
